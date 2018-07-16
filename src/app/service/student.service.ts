@@ -1,12 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Student } from '../model/student.model';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Student} from '../model/student.model';
+import {BehaviorSubject} from 'rxjs';
 
 
 @Injectable()
 export class StudentService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
+
   baseUrl: string = 'http://localhost:8080/Student-portal/student';
+  public studentsList = [];
 
   getStudents() {
     /* let fakeStudents = [{id: 1, firstName: 'Dhiraj', lastName: 'Ray', email: 'dhiraj@gmail.com'},
@@ -32,5 +36,11 @@ export class StudentService {
 
   deleteStudent(id: number) {
     return this.http.delete(this.baseUrl + '/' + id);
+  }
+
+  /**Set Students**/
+  updateStudentList(data: any) {
+    this.studentsList.push(data);
+    return this.studentsList;
   }
 }
