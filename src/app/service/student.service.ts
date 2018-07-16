@@ -41,10 +41,10 @@ export class StudentService {
 
   /**Set Students**/
   updateStudentList(data: any): void {
-    this.studentsList.next(data);
+    this.studentsList.next(this.studentsList.value.concat(data));
   }
 
   getStudentList() {
     return this.studentsList$;
   }
-}
+
