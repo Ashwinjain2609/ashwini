@@ -1,5 +1,4 @@
-export class Student {
-
+interface  Student {
     id: number;
     firstName: string;
     lastName: string;
@@ -7,4 +6,3 @@ export class Student {
     standard: string;
     test: string;
   }
-  

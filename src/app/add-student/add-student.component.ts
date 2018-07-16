@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {StudentService} from '../service/student.service';
-import {Student} from '../model/student.model';
 
 @Component({
   selector: 'app-add-student',
@@ -16,6 +15,7 @@ export class AddStudentComponent implements OnInit {
 
   addForm: FormGroup;
   public studentModel: Student;
+  public studentList = [];
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
@@ -30,7 +30,16 @@ export class AddStudentComponent implements OnInit {
 
   update() {
     if (this.addForm.valid) {
-      this.studentService.updateStudentList(this.addForm.controls);
+      const stuObj = {
+        'email': this.addForm.controls['email'].value,
+        'fname': this.addForm.controls['firstName'].value,
+        'lname': this.addForm.controls['lastName'].value,
+        'std': this.addForm.controls['standard'].value,
+        'test': this.addForm.controls['test'].value
+      };
+      this.studentList.push(stuObj);
+      this.studentService.updateStudentList(this.studentList);
+      this.router.navigate(['list-student']);
     }
   }
 
