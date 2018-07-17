@@ -41,10 +41,18 @@ export class StudentService {
 
   /**Set Students**/
   updateStudentList(data: any): void {
+<<<<<<< HEAD
     this.studentsList.next(data);
   }
 
   getStudentList() {
     return this.studentsList$;
+=======
+    this.studentsList.next(this.studentsList.value.concat(data));
+>>>>>>> f201137f410913c0ff393098ba356b7787decff4
   }
-}
+
+  getStudentList() {
+    return this.studentsList$;
+  }
+
