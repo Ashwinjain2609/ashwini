@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Student} from '../model/student.model';
 import {BehaviorSubject} from 'rxjs';
+import {Observable} from 'rxjs';
 
 
 @Injectable()
@@ -10,7 +10,8 @@ export class StudentService {
   }
 
   baseUrl: string = 'http://localhost:8080/Student-portal/student';
-  public studentsList = [];
+  public studentsList = new BehaviorSubject<Student[]>([]);
+  studentsList$ = this.studentsList.asObservable();
 
   getStudents() {
     /* let fakeStudents = [{id: 1, firstName: 'Dhiraj', lastName: 'Ray', email: 'dhiraj@gmail.com'},
@@ -39,8 +40,11 @@ export class StudentService {
   }
 
   /**Set Students**/
-  updateStudentList(data: any) {
-    this.studentsList.push(data);
-    return this.studentsList;
+  updateStudentList(data: any): void {
+    this.studentsList.next(data);
+  }
+
+  getStudentList() {
+    return this.studentsList$;
   }
 }

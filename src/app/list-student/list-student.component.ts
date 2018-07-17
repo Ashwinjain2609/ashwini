@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {StudentService} from '../service/student.service';
-import {Student} from '../model/student.model';
 
 @Component({
   selector: 'app-list-student',
@@ -10,17 +9,17 @@ import {Student} from '../model/student.model';
 })
 export class ListStudentComponent implements OnInit {
 
-
+  public studentsList = [];
   students: Student[];
 
   constructor(private router: Router, private studentService: StudentService) {
   }
 
   ngOnInit() {
-    this.studentService.getStudents()
-      .subscribe(data => {
-        this.students = data;
-      });
+
+    this.studentService.studentsList$.forEach(response => {
+      this.studentsList = response;
+    });
   }
 
   deleteStudent(student: Student): void {
