@@ -47,4 +47,3 @@ export class StudentService {
   getStudentList() {
     return this.studentsList$;
   }
-
