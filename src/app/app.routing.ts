@@ -3,10 +3,11 @@ import { LoginComponent } from './login/login.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { ListStudentComponent } from './list-student/list-student.component';
 import { EditStudentComponent } from './edit-student/edit-student.component';
-
+import { AddSubjectComponent } from './add-subject/add-subject.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'add-student', component: AddStudentComponent },
+  { path: 'add-subject', component: AddSubjectComponent},
   { path: 'list-student', component: ListStudentComponent },
   { path: 'edit-student', component: EditStudentComponent },
   {path : '', component : LoginComponent}

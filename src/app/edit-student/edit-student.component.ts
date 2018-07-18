@@ -21,7 +21,7 @@ export class EditStudentComponent implements OnInit {
     let userId = localStorage.getItem('editStudentId');
     if (!userId) {
       alert('Invalid action.');
-      this.router.navigate(['list-user']);
+      this.router.navigate(['list-student']);
       return;
     }
     this.editForm = this.formBuilder.group({

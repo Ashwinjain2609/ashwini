@@ -5,47 +5,47 @@ import {Observable} from 'rxjs';
 
 
 @Injectable()
-export class StudentService {
+export class subjectervice {
   constructor(private http: HttpClient) {
   }
 
   baseUrl: string = 'http://localhost:8080/Student-portal/student';
-  public studentsList = new BehaviorSubject<Student[]>([]);
-  studentsList$ = this.studentsList.asObservable();
+  public subjectList = new BehaviorSubject<Student[]>([]);
+  subjectList$ = this.subjectList.asObservable();
 
-  getStudents() {
-    /* let fakeStudents = [{id: 1, firstName: 'Dhiraj', lastName: 'Ray', email: 'dhiraj@gmail.com'},
+  getsubject() {
+    /* let fakesubject = [{id: 1, firstName: 'Dhiraj', lastName: 'Ray', email: 'dhiraj@gmail.com'},
      {id: 1, firstName: 'Tom', lastName: 'Jac', email: 'Tom@gmail.com'},
      {id: 1, firstName: 'Hary', lastName: 'Pan', email: 'hary@gmail.com'},
      {id: 1, firstName: 'praks', lastName: 'pb', email: 'praks@gmail.com'},
    ];
-   return Observable.of(fakeStudents).delay(5000);*/
+   return Observable.of(fakesubject).delay(5000);*/
     return this.http.get<Student[]>(this.baseUrl);
   }
 
-  getStudentById(id: number) {
+  getSubjectById(id: number) {
     return this.http.get<Student>(this.baseUrl + '/' + id);
   }
 
-  createStudent(user: Student) {
+  createSubject(user: Student) {
     return this.http.post(this.baseUrl, user);
   }
 
-  updateStudent(user: Student) {
+  updateSubject(user: Student) {
     return this.http.put(this.baseUrl + '/' + user.id, user);
   }
 
-  deleteStudent(id: number) {
+  deleteSubject(id: number) {
     return this.http.delete(this.baseUrl + '/' + id);
   }
 
-  /**Set Students**/
-  updateStudentList(data: any): void {
-    this.studentsList.next(this.studentsList.value.concat(data));
+  /**Set subject**/
+  updateSubjectList(data: any): void {
+    this.subjectList.next(this.subjectList.value.concat(data));
   }
 
-  getStudentList() {
-    return this.studentsList$;
+  getSubjectList() {
+    return this.subjectList$;
   }
 
 }

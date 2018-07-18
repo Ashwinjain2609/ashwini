@@ -37,7 +37,8 @@ export class AddStudentComponent implements OnInit {
         'std': this.addForm.controls['standard'].value,
         'test': this.addForm.controls['test'].value
       };
-      this.studentService.updateStudentList(stuObj);
+      this.studentList.push(stuObj);
+      this.studentService.updateStudentList(this.studentList);
       this.router.navigate(['list-student']);
     }
   }

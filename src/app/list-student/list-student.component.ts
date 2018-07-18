@@ -38,5 +38,8 @@ export class ListStudentComponent implements OnInit {
   addStudent(): void {
     this.router.navigate(['add-student']);
   }
+  addSubject(): void {
+    this.router.navigate(['add-subject']);
+  }
 
 }
