@@ -1,36 +1,87 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
-import { routing } from './app.routing';
-import { LoginComponent } from './login/login.component';
-import { AuthenticationService } from './service/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { AddStudentComponent } from './add-student/add-student.component';
-import { EditStudentComponent } from './edit-student/edit-student.component';
-import { ListStudentComponent } from './list-student/list-student.component';
-import { StudentService } from './service/student.service';
-import { AddSubjectComponent } from './add-subject/add-subject.component';
+
+import { AppComponent } from './app.component';
+import { RouterModule, Routes } from '@angular/router';
+import { BookComponent } from './book/book.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
+import { BookCreateComponent } from './book-create/book-create.component';
+import { BookEditComponent } from './book-edit/book-edit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {TestCreateComponent} from './test-create/test-create.component';
+
+import {
+  MatInputModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatTableModule,
+  MatIconModule,
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule } from "@angular/material";
+
+const appRoutes: Routes = [
+  {
+    path: 'list-student',
+    component: BookComponent,
+    data: { title: 'Book List' }
+  },
+  {
+    path: 'student-details/:id',
+    component: BookDetailComponent,
+    data: { title: 'Student Details' }
+  },
+  {
+    path: 'Student-create',
+    component: BookCreateComponent,
+    data: { title: 'Create Book' }
+  },
+  {
+    path: 'student-edit/:id',
+    component: BookEditComponent,
+    data: { title: 'Edit Student' }
+  },
+  {
+    path: 'Test-create',
+    component: TestCreateComponent,
+    data: { title: 'Create Test' }
+  },
+  { path: '',
+    redirectTo: '/list-student',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    AddStudentComponent,
-    EditStudentComponent,
-
-    ListStudentComponent,
-
-    AddSubjectComponent
+    BookComponent,
+    BookDetailComponent,
+    BookCreateComponent,
+    BookEditComponent,
+    TestCreateComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
-    routing,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule
   ],
-  providers: [AuthenticationService,StudentService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
